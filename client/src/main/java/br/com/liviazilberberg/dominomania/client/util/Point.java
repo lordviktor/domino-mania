@@ -26,5 +26,13 @@ public class Point {
 
     public void setY(int y) {
         this.y = y;
-    }    
+    }
+
+	public static Point getOrigin() {
+		return new Point(0, 0);
+	}
+	
+	public static Point sum(Point point, int scalar) {
+		return new Point(point.getX() + scalar, point.getY() + scalar);
+	}
 }

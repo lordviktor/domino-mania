@@ -1,4 +1,4 @@
-package br.com.liviazilberberg.dominomania.client.objects;
+package br.com.liviazilberberg.dominomania.client.objects.base;
 
 import br.com.liviazilberberg.dominomania.client.util.ConsoleOutput;
 import br.com.liviazilberberg.dominomania.client.util.Point;
@@ -17,13 +17,9 @@ public class BaseObject {
 	}
 
 	int i = 0;
-	
+
 	public void update() {
-		i += 1;
-		if(i % 3 == 0) {
-			this.position.setX(position.getX() + 1);
-			this.position.setY(position.getY() + 1);			
-		}
+
 	}
 
 	public void draw(ConsoleOutput consoleOutput) {

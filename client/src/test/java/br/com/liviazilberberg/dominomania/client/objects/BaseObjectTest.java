@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+import br.com.liviazilberberg.dominomania.client.objects.base.BaseObject;
 import br.com.liviazilberberg.dominomania.client.util.ConsoleOutput;
 import br.com.liviazilberberg.dominomania.client.util.Point;
 

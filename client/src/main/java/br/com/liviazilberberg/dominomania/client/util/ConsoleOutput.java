@@ -1,6 +1,6 @@
 package br.com.liviazilberberg.dominomania.client.util;
 
-import br.com.liviazilberberg.dominomania.client.objects.BaseObject;
+import br.com.liviazilberberg.dominomania.client.objects.base.BaseObject;
 
 public class ConsoleOutput {
 
@@ -49,8 +49,8 @@ public class ConsoleOutput {
 				result = result += line.substring(objectSize.getX() - objectPosition.getX() * - 1, size.getX());
 			} else {
 				result = result += objectToDraw.getTexture()[i];
-				int position = objectPosition.getX() + objectSize.getX() - 1;
-				result += line.substring(position, size.getX() - 1);
+				int position = objectPosition.getX() + objectSize.getX();
+				result += line.substring(position, size.getX());
 			}
 			output[lineNumber] = result;
 		}

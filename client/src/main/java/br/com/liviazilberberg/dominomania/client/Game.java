@@ -1,45 +1,42 @@
 package br.com.liviazilberberg.dominomania.client;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import br.com.liviazilberberg.dominomania.client.objects.BaseObject;
-import br.com.liviazilberberg.dominomania.client.objects.Domino;
 import br.com.liviazilberberg.dominomania.client.util.ConsoleOutput;
+import br.com.liviazilberberg.dominomania.client.util.InputManager;
+import br.com.liviazilberberg.dominomania.client.util.NavigationManager;
 import br.com.liviazilberberg.dominomania.client.util.Point;
+import br.com.liviazilberberg.dominomania.client.view.base.BaseView;
 
-public class Game {
+public class Game implements NavigationManager {
 
-	List<BaseObject> objectsOnScreen = new ArrayList<BaseObject>();
+	private BaseView currentView;
+	private Point size;
 
-	public Game() {
-		initialize();
+	public Game(Point size, BaseView initialView) {
+		this.size = size;
+		this.currentView = initialView;
 	}
 
-	public void initialize() {
-		objectsOnScreen.add(new Domino(new Point(3, 3)));
-		objectsOnScreen.add(new Domino(new Point(13, 3)));
-		objectsOnScreen.add(new Domino(new Point(23, 3)));
-		objectsOnScreen.add(new Domino(new Point(33, 3)));
+	public void navigateTo(BaseView view) {
+		this.currentView = view;
 	}
 
 	public void execute() {
-
 		while (true) {
-			try {
-				Thread.sleep(33);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			sleep();
 			clearConsole();
-			ConsoleOutput console = new ConsoleOutput(new Point(100, 40));
-			for (BaseObject object : objectsOnScreen) {
-				object.update();
-				object.draw(console);
-			}
+			ConsoleOutput console = new ConsoleOutput(size);
+
+			this.currentView.update();
+			this.currentView.Draw(console);
+
 			System.out.println(console.toString());
 		}
+	}
+
+	private void sleep() {	
+		InputManager inputManager = new InputManager();
+		inputManager.readInputForTime(30000);
+		//Thread.sleep(33);
 	}
 
 	public final static void clearConsole() {
@@ -52,8 +49,8 @@ public class Game {
 				Runtime.getRuntime().exec("clear");
 			}
 		} catch (final Exception e) {
-			// Handle any exceptions.
+			// something REALLY bad happen
+			e.printStackTrace();
 		}
 	}
-
 }
