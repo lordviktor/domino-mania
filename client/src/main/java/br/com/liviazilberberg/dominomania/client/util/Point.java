@@ -2,8 +2,8 @@ package br.com.liviazilberberg.dominomania.client.util;
 
 public class Point {
 
-    int x;
-    int y;
+    private int x;
+    private int y;
     
     public Point(int x, int y) {
 	super();
