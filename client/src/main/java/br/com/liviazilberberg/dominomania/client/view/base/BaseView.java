@@ -9,27 +9,28 @@ import br.com.liviazilberberg.dominomania.client.model.base.BaseModel;
 import br.com.liviazilberberg.dominomania.client.objects.base.BaseObject;
 import br.com.liviazilberberg.dominomania.client.util.ConsoleOutput;
 
-public abstract class BaseView<Model extends BaseModel, Controller extends BaseController> implements Observer {
+public abstract class BaseView<Model extends BaseModel, Controller extends BaseController<Model>>
+		implements Observer {
 
 	private List<BaseObject> objectsOnScreen = new ArrayList<BaseObject>();
 	private Model model;
 	private Controller controller;
-	
+
 	public BaseView(Model baseModel, Controller baseController) {
 		this.model = baseModel;
 		this.controller = baseController;
-		
+
 		this.model.addObserver(this);
-		
+
 		this.initialize();
 	}
 
 	protected abstract void initialize();
-	
+
 	protected Model getModel() {
 		return model;
 	}
-	
+
 	public Controller getController() {
 		return controller;
 	}

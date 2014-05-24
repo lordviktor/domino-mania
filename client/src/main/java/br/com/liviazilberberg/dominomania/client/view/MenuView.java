@@ -14,8 +14,8 @@ import br.com.liviazilberberg.dominomania.client.util.InputManager;
 import br.com.liviazilberberg.dominomania.client.util.Point;
 import br.com.liviazilberberg.dominomania.client.view.base.BaseView;
 
-public class MenuView extends BaseView<MenuModel, BaseController> implements
-		Observer {
+public class MenuView extends BaseView<MenuModel, BaseController<MenuModel>>
+		implements Observer {
 
 	private Label titulo;
 	private Label subtitulo;

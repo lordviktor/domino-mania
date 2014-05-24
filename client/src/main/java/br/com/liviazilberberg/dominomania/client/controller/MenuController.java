@@ -7,11 +7,12 @@ import br.com.liviazilberberg.dominomania.client.model.MenuModel.MenuStepEnum;
 import br.com.liviazilberberg.dominomania.client.util.GamePadEnum;
 import br.com.liviazilberberg.dominomania.client.util.InputManager.GamepadActionEvent;
 
-public class MenuController extends BaseController {
+public class MenuController extends BaseController<MenuModel> {
 
 	private MenuModel menuModel;
 
 	public MenuController(MenuModel menuModel) {
+		super(menuModel);
 		this.menuModel = menuModel;
 	}
 
@@ -24,6 +25,10 @@ public class MenuController extends BaseController {
 				menuModel.setSelectedProtocol(ProtocolEnum.UDP);
 			} else if (event.getGamepadAction() == GamePadEnum.RIGTH) {
 				menuModel.setSelectedProtocol(ProtocolEnum.TCP);
+			}
+
+			if (event.getGamepadAction() == GamePadEnum.A) {
+				
 			}
 		}
 	}
