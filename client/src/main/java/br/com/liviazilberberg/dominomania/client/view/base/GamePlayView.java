@@ -10,7 +10,7 @@ import br.com.liviazilberberg.dominomania.client.objects.Domino;
 import br.com.liviazilberberg.dominomania.client.util.Point;
 
 public class GamePlayView extends BaseView<GamePlayModel, GamePlayController> {
-	List<Domino> dominoOnScreen = new ArrayList<Domino>();
+	List<Domino> dominoOnScreen;
 
 	public GamePlayView(GamePlayModel baseModel,
 			GamePlayController baseController) {
@@ -25,7 +25,7 @@ public class GamePlayView extends BaseView<GamePlayModel, GamePlayController> {
 
 	@Override
 	protected void initialize() {
-
+		this.dominoOnScreen = new ArrayList<Domino>();
 		for (int i = 0; i < getModel().getDominoBrickOnHand().size(); i++) {
 			Domino dom = new Domino(new Point((i * 9) + 5, 35));
 			dominoOnScreen.add(dom);

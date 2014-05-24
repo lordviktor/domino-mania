@@ -4,23 +4,20 @@ import br.com.liviazilberberg.dominomania.client.util.ConsoleOutput;
 import br.com.liviazilberberg.dominomania.client.util.GameWindow;
 import br.com.liviazilberberg.dominomania.client.util.NavigationManager;
 import br.com.liviazilberberg.dominomania.client.util.Point;
+import br.com.liviazilberberg.dominomania.client.util.ViewManager;
 import br.com.liviazilberberg.dominomania.client.view.base.BaseView;
 
 public class Game implements NavigationManager {
 
-	private BaseView<?, ?> currentView;
 	private Point size;
 	private GameWindow gameWindow;
 
 	public Game(Point size, BaseView<?, ?> initialView) {
 		this.size = size;
-		this.currentView = initialView;
+
+		ViewManager.getInstance().navigateTo(initialView);
 
 		this.gameWindow = new GameWindow();
-	}
-
-	public void navigateTo(BaseView<?, ?> view) {
-		this.currentView = view;
 	}
 
 	public void execute() {
@@ -29,8 +26,8 @@ public class Game implements NavigationManager {
 
 			ConsoleOutput console = new ConsoleOutput(size);
 
-			this.currentView.update();
-			this.currentView.draw(console);
+			ViewManager.getInstance().getCurrentView().update();
+			ViewManager.getInstance().getCurrentView().draw(console);
 
 			gameWindow.setText(console.toString());
 		}
