@@ -1,42 +1,48 @@
 package br.com.liviazilberberg.dominomania.client;
 
 import br.com.liviazilberberg.dominomania.client.util.ConsoleOutput;
-import br.com.liviazilberberg.dominomania.client.util.InputManager;
+import br.com.liviazilberberg.dominomania.client.util.GameWindow;
 import br.com.liviazilberberg.dominomania.client.util.NavigationManager;
 import br.com.liviazilberberg.dominomania.client.util.Point;
 import br.com.liviazilberberg.dominomania.client.view.base.BaseView;
 
 public class Game implements NavigationManager {
 
-	private BaseView currentView;
+	private BaseView<?, ?> currentView;
 	private Point size;
+	private GameWindow gameWindow;
 
-	public Game(Point size, BaseView initialView) {
+	public Game(Point size, BaseView<?, ?> initialView) {
 		this.size = size;
 		this.currentView = initialView;
+
+		this.gameWindow = new GameWindow();
 	}
 
-	public void navigateTo(BaseView view) {
+	public void navigateTo(BaseView<?, ?> view) {
 		this.currentView = view;
 	}
 
 	public void execute() {
 		while (true) {
 			sleep();
-			clearConsole();
+
 			ConsoleOutput console = new ConsoleOutput(size);
 
 			this.currentView.update();
-			this.currentView.Draw(console);
+			this.currentView.draw(console);
 
-			System.out.println(console.toString());
+			gameWindow.setText(console.toString());
 		}
 	}
 
-	private void sleep() {	
-		InputManager inputManager = new InputManager();
-		inputManager.readInputForTime(30000);
-		//Thread.sleep(33);
+	private void sleep() {
+		try {
+			Thread.sleep(33);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public final static void clearConsole() {

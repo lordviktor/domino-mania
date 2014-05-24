@@ -4,6 +4,6 @@ import br.com.liviazilberberg.dominomania.client.view.base.BaseView;
 
 public interface NavigationManager {
 
-	void navigateTo(BaseView view);
+	void navigateTo(BaseView<?, ?> view);
 
 }
