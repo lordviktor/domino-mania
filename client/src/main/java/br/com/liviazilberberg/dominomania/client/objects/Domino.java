@@ -7,13 +7,21 @@ public class Domino extends BaseObject {
 
 	public static final Point SIZE = new Point(9, 3); 
 	
-	public static final String[] TEXTURE = {
+	public final String[] texture = {
 		"┌───┬───┐",
-		"│ 3 │ 3 │",
+		"│ L │ R │",
 		"└───┴───┘" 
 	};
-	
-	public Domino(Point position) {
-		super(position, SIZE, TEXTURE);
+
+	public Domino(Point position, int leftSide, int rigthSide) {
+		super(position, SIZE, new String[0]);
+
+		texture[1] = texture[1].replace("L", String.valueOf(leftSide));
+		texture[1] = texture[1].replace("R", String.valueOf(rigthSide));
+	}
+
+	@Override
+	public String[] getTexture() {
+		return this.texture;
 	}
 }
