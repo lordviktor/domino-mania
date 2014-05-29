@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Frame;
 import java.awt.TextArea;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 public class GameWindow {
 
@@ -18,10 +20,47 @@ public class GameWindow {
 
 	private void constructGui() {
 		frame = new Frame("Domino Mania");
-		frame.setSize(800, 800);
+		frame.setSize(1200, 800);
 		frame.addKeyListener(InputManager.getInstance());
 		frame.setFocusable(true);
-
+		frame.addWindowListener(new WindowListener() {
+			
+			@Override
+			public void windowOpened(WindowEvent e) {
+				
+			}
+			
+			@Override
+			public void windowIconified(WindowEvent e) {
+				
+			}
+			
+			@Override
+			public void windowDeiconified(WindowEvent e) {
+				
+			}
+			
+			@Override
+			public void windowDeactivated(WindowEvent e) {
+				
+			}
+			
+			@Override
+			public void windowClosing(WindowEvent e) {
+				System.exit(0);
+			}
+			
+			@Override
+			public void windowClosed(WindowEvent e) {
+				
+			}
+			
+			@Override
+			public void windowActivated(WindowEvent e) {
+				
+			}
+		});
+		
 		textArea = new TextArea();
 		textArea.setBackground(Color.BLACK);
 		textArea.setForeground(Color.GREEN);
