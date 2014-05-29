@@ -2,6 +2,7 @@ package br.com.liviazilberberg.dominomania.client.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import br.com.liviazilberberg.dominomania.client.model.DominoBrick;
 
@@ -18,9 +19,20 @@ public class DominoService {
 			}
 		}
 	}
+	
+	public DominoBrick drawDominoBrick(){
+		int sortedBrick = new Random().nextInt(dominoBricks.size());
+		DominoBrick result = dominoBricks.remove(sortedBrick);
+		return result;
+	}
+	
 
 	public List<DominoBrick> listDominosOnPlayerHand() {
-		List<DominoBrick> result = this.dominoBricks.subList(0, 6);
+		List<DominoBrick> result = new ArrayList<DominoBrick>();
+		for(int i = 0; i < 7; i++) {
+			result.add(drawDominoBrick());
+		}
+		
 		return result;
 	}
 }
