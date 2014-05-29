@@ -1,7 +1,9 @@
-package br.com.liviazilberberg.dominomania.client.model.base;
+package br.com.liviazilberberg.dominomania.client.model;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import br.com.liviazilberberg.dominomania.client.model.base.BaseModel;
 
 public class GamePlayModel extends BaseModel {
 

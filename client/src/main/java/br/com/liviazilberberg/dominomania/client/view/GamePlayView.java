@@ -1,14 +1,15 @@
-package br.com.liviazilberberg.dominomania.client.view.base;
+package br.com.liviazilberberg.dominomania.client.view;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 
 import br.com.liviazilberberg.dominomania.client.controller.GamePlayController;
-import br.com.liviazilberberg.dominomania.client.model.base.DominoBrick;
-import br.com.liviazilberberg.dominomania.client.model.base.GamePlayModel;
+import br.com.liviazilberberg.dominomania.client.model.DominoBrick;
+import br.com.liviazilberberg.dominomania.client.model.GamePlayModel;
 import br.com.liviazilberberg.dominomania.client.objects.Domino;
 import br.com.liviazilberberg.dominomania.client.util.Point;
+import br.com.liviazilberberg.dominomania.client.view.base.BaseView;
 
 public class GamePlayView extends BaseView<GamePlayModel, GamePlayController> {
 	List<Domino> dominoOnScreen;

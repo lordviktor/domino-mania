@@ -3,7 +3,7 @@ package br.com.liviazilberberg.dominomania.client.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.liviazilberberg.dominomania.client.model.base.DominoBrick;
+import br.com.liviazilberberg.dominomania.client.model.DominoBrick;
 
 public class DominoService {
 

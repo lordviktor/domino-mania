@@ -2,12 +2,11 @@ package br.com.liviazilberberg.dominomania.client;
 
 import br.com.liviazilberberg.dominomania.client.util.ConsoleOutput;
 import br.com.liviazilberberg.dominomania.client.util.GameWindow;
-import br.com.liviazilberberg.dominomania.client.util.NavigationManager;
 import br.com.liviazilberberg.dominomania.client.util.Point;
 import br.com.liviazilberberg.dominomania.client.util.ViewManager;
 import br.com.liviazilberberg.dominomania.client.view.base.BaseView;
 
-public class Game implements NavigationManager {
+public class Game {
 
 	private Point size;
 	private GameWindow gameWindow;

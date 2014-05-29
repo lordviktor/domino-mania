@@ -25,7 +25,13 @@ public class InputManager implements KeyListener {
 	public void addActionListener(GamePadActionListener listener) {
 		actionListener.add(listener);
 	}
-
+	
+	
+	/*
+	 * Java KeyListener implementation
+	 * @see java.awt.event.KeyListener
+	 */
+	
 	@Override
 	public void keyTyped(KeyEvent e) {
 

@@ -1,4 +1,4 @@
-package br.com.liviazilberberg.dominomania.client.model.base;
+package br.com.liviazilberberg.dominomania.client.model;
 
 public class DominoBrick {
 	private int leftSideNumber;

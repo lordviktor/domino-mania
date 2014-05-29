@@ -1,14 +1,14 @@
 package br.com.liviazilberberg.dominomania.client.controller;
 
 import br.com.liviazilberberg.dominomania.client.controller.base.BaseController;
+import br.com.liviazilberberg.dominomania.client.model.GamePlayModel;
 import br.com.liviazilberberg.dominomania.client.model.MenuModel;
 import br.com.liviazilberberg.dominomania.client.model.ProtocolEnum;
 import br.com.liviazilberberg.dominomania.client.model.MenuModel.MenuStepEnum;
-import br.com.liviazilberberg.dominomania.client.model.base.GamePlayModel;
 import br.com.liviazilberberg.dominomania.client.util.GamePadEnum;
 import br.com.liviazilberberg.dominomania.client.util.ViewManager;
 import br.com.liviazilberberg.dominomania.client.util.InputManager.GamepadActionEvent;
-import br.com.liviazilberberg.dominomania.client.view.base.GamePlayView;
+import br.com.liviazilberberg.dominomania.client.view.GamePlayView;
 
 public class MenuController extends BaseController<MenuModel> {
 
