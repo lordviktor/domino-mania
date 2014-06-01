@@ -6,6 +6,7 @@ import java.util.Observer;
 import br.com.liviazilberberg.dominomania.client.controller.MenuController;
 import br.com.liviazilberberg.dominomania.client.controller.base.BaseController;
 import br.com.liviazilberberg.dominomania.client.model.MenuModel;
+import br.com.liviazilberberg.dominomania.client.model.MenuModel.MenuStepEnum;
 import br.com.liviazilberberg.dominomania.client.model.ProtocolEnum;
 import br.com.liviazilberberg.dominomania.client.objects.Border;
 import br.com.liviazilberberg.dominomania.client.objects.Label;
@@ -14,8 +15,7 @@ import br.com.liviazilberberg.dominomania.client.util.InputManager;
 import br.com.liviazilberberg.dominomania.client.util.Point;
 import br.com.liviazilberberg.dominomania.client.view.base.BaseView;
 
-public class MenuView extends BaseView<MenuModel, BaseController<MenuModel>>
-		implements Observer {
+public class MenuView extends BaseView<MenuModel, BaseController<MenuModel>> implements Observer {
 
 	private Label titulo;
 	private Label subtitulo;
@@ -24,6 +24,8 @@ public class MenuView extends BaseView<MenuModel, BaseController<MenuModel>>
 	private Point tcpBorderPosition;
 	private Point udpBorderPosition;
 	private Border protocolSelectedBorder;
+
+	private MenuStepEnum lastStep;
 
 	public MenuView(MenuModel menuModel, MenuController menuController) {
 		super(menuModel, menuController);
@@ -35,42 +37,50 @@ public class MenuView extends BaseView<MenuModel, BaseController<MenuModel>>
 		Border border = new Border(Point.getOrigin(), new Point(150, 40));
 		super.addObjectToView(border);
 
-		titulo = new Label(new Point(1, 10), new Point(148, 1),
-				"Bem vindo ao Domino Mania!!!!", TextAlign.CENTER);
+		titulo = new Label(new Point(1, 10), new Point(148, 1), "Bem vindo ao Domino Mania!!!!", TextAlign.CENTER);
 		super.addObjectToView(titulo);
 
-		subtitulo = new Label(new Point(1, 13), new Point(148, 1),
-				"Selecione o protocolo:", TextAlign.CENTER);
+		subtitulo = new Label(new Point(1, 13), new Point(148, 1), "Selecione o protocolo:", TextAlign.CENTER);
 		super.addObjectToView(subtitulo);
 
 		tcpBorderPosition = new Point(75, 19);
 		udpBorderPosition = new Point(69, 19);
 		if (getModel().getSelectedProtocol() == ProtocolEnum.TCP) {
-			protocolSelectedBorder = new Border(tcpBorderPosition, new Point(5,
-					3));
+			protocolSelectedBorder = new Border(tcpBorderPosition, new Point(5, 3));
 		} else {
-			protocolSelectedBorder = new Border(udpBorderPosition, new Point(5,
-					3));
+			protocolSelectedBorder = new Border(udpBorderPosition, new Point(5, 3));
 		}
 		super.addObjectToView(protocolSelectedBorder);
 
-		labelTcp = new Label(new Point(76, 20), new Point(3, 1), "TCP",
-				TextAlign.CENTER);
+		labelTcp = new Label(new Point(76, 20), new Point(3, 1), "TCP", TextAlign.CENTER);
 		super.addObjectToView(labelTcp);
 
-		labelUdp = new Label(new Point(70, 20), new Point(3, 1), "UDP",
-				TextAlign.CENTER);
+		labelUdp = new Label(new Point(70, 20), new Point(3, 1), "UDP", TextAlign.CENTER);
 		super.addObjectToView(labelUdp);
+
+		this.lastStep = MenuStepEnum.SELECT_PROTOCOL;
 
 		InputManager.getInstance().addActionListener(this.getController());
 	}
 
 	@Override
 	public void update(Observable o, Object arg) {
-		if (getModel().getSelectedProtocol() == ProtocolEnum.TCP) {
-			this.protocolSelectedBorder.setPosition(tcpBorderPosition);
-		} else {
-			this.protocolSelectedBorder.setPosition(udpBorderPosition);
+		if (this.getModel().getCurrentStep() == MenuStepEnum.SELECT_PROTOCOL) {
+			if (getModel().getSelectedProtocol() == ProtocolEnum.TCP) {
+				this.protocolSelectedBorder.setPosition(tcpBorderPosition);
+			} else {
+				this.protocolSelectedBorder.setPosition(udpBorderPosition);
+			}
+		} else if (getModel().getCurrentStep() == MenuStepEnum.SETTING_NAME && lastStep == MenuStepEnum.SELECT_PROTOCOL) {
+			initializeSettingName();
+		} else if (getModel().getCurrentStep() == MenuStepEnum.SETTING_NAME) {
+
 		}
 	}
+
+	private void initializeSettingName() {
+		
+		
+	}
+	
 }
