@@ -17,8 +17,8 @@ import br.com.liviazilberberg.dominomania.client.view.base.BaseView;
 
 public class MenuView extends BaseView<MenuModel, BaseController<MenuModel>> implements Observer {
 
-	private Label titulo;
-	private Label subtitulo;
+	private Label title;
+	private Label protocolSubtitle;
 	private Label labelTcp;
 	private Label labelUdp;
 	private Point tcpBorderPosition;
@@ -26,6 +26,7 @@ public class MenuView extends BaseView<MenuModel, BaseController<MenuModel>> imp
 	private Border protocolSelectedBorder;
 
 	private MenuStepEnum lastStep;
+	private Label subtitleSettingName;
 
 	public MenuView(MenuModel menuModel, MenuController menuController) {
 		super(menuModel, menuController);
@@ -37,11 +38,11 @@ public class MenuView extends BaseView<MenuModel, BaseController<MenuModel>> imp
 		Border border = new Border(Point.getOrigin(), new Point(150, 40));
 		super.addObjectToView(border);
 
-		titulo = new Label(new Point(1, 10), new Point(148, 1), "Bem vindo ao Domino Mania!!!!", TextAlign.CENTER);
-		super.addObjectToView(titulo);
+		title = new Label(new Point(1, 10), new Point(148, 1), "Bem vindo ao Domino Mania!!!!", TextAlign.CENTER);
+		super.addObjectToView(title);
 
-		subtitulo = new Label(new Point(1, 13), new Point(148, 1), "Selecione o protocolo:", TextAlign.CENTER);
-		super.addObjectToView(subtitulo);
+		protocolSubtitle = new Label(new Point(1, 13), new Point(148, 1), "Selecione o protocolo:", TextAlign.CENTER);
+		super.addObjectToView(protocolSubtitle);
 
 		tcpBorderPosition = new Point(75, 19);
 		udpBorderPosition = new Point(69, 19);
@@ -65,6 +66,7 @@ public class MenuView extends BaseView<MenuModel, BaseController<MenuModel>> imp
 
 	@Override
 	public void update(Observable o, Object arg) {
+		super.update();
 		if (this.getModel().getCurrentStep() == MenuStepEnum.SELECT_PROTOCOL) {
 			if (getModel().getSelectedProtocol() == ProtocolEnum.TCP) {
 				this.protocolSelectedBorder.setPosition(tcpBorderPosition);
@@ -79,8 +81,18 @@ public class MenuView extends BaseView<MenuModel, BaseController<MenuModel>> imp
 	}
 
 	private void initializeSettingName() {
-		
-		
+		protocolSubtitle.setText("Protocolo Selecionado:");
+		Point labelPosition = new Point(73, 15);
+		Point borderPosition = new Point(72, 14);
+		this.protocolSelectedBorder.setPosition(borderPosition);
+		if (getModel().getSelectedProtocol() == ProtocolEnum.TCP) {
+			this.labelTcp.setPosition(labelPosition);
+			removeObjectOnView(labelUdp);
+		} else {
+			this.labelUdp.setPosition(labelPosition);
+			removeObjectOnView(labelTcp);
+		}
+		subtitleSettingName = new Label(new Point(1, 19), new Point(148, 1), "Digite seu nome:", TextAlign.CENTER);
+		super.addObjectToView(subtitleSettingName);
 	}
-	
 }

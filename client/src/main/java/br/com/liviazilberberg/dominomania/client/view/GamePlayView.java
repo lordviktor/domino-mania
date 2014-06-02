@@ -12,10 +12,10 @@ import br.com.liviazilberberg.dominomania.client.util.Point;
 import br.com.liviazilberberg.dominomania.client.view.base.BaseView;
 
 public class GamePlayView extends BaseView<GamePlayModel, GamePlayController> {
-	List<Domino> dominoOnScreen;
+	private List<Domino> dominoOnHand;
+	private List<Domino> dominoOnScreen;
 
-	public GamePlayView(GamePlayModel baseModel,
-			GamePlayController baseController) {
+	public GamePlayView(GamePlayModel baseModel, GamePlayController baseController) {
 		super(baseModel, baseController);
 
 	}
@@ -27,16 +27,14 @@ public class GamePlayView extends BaseView<GamePlayModel, GamePlayController> {
 
 	@Override
 	protected void initialize() {
-		this.dominoOnScreen = new ArrayList<Domino>();
+		this.dominoOnHand = new ArrayList<Domino>();
 		int order = 0;
 		for (DominoBrick dominoBrick : getModel().getDominoBrickOnHand()) {
 			Point position = new Point(order * 9 + 5, 35);
-			
-			Domino domino = new Domino(position,
-					dominoBrick.getLeftSideNumber(),
-					dominoBrick.getRigthSideNumber());
 
-			this.dominoOnScreen.add(domino);
+			Domino domino = new Domino(position, dominoBrick.getLeftSideNumber(), dominoBrick.getRigthSideNumber());
+
+			this.dominoOnHand.add(domino);
 			super.addObjectToView(domino);
 			order++;
 		}

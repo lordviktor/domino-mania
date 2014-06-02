@@ -26,4 +26,18 @@ public class DominoBrick {
 		this.rigthSideNumber = rigthSideNumber;
 	}
 
+	public Boolean verifyCompatibility(DominoBrick dominoBrick, Side side){
+		
+		int valueToCompare = side == Side.LEFT ? this.leftSideNumber : this.rigthSideNumber;
+		
+		if (dominoBrick.getLeftSideNumber() == valueToCompare || 
+				dominoBrick.getRigthSideNumber() == valueToCompare) {
+			return true;
+		}
+		return false;
+	}
+	
+	public enum Side{
+		LEFT, RIGTH
+	}
 }

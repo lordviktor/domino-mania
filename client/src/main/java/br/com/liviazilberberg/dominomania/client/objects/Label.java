@@ -24,6 +24,10 @@ public class Label extends BaseObject {
 		return this.align.generateAlignedText(text, getSize());
 	}
 
+	public void setText(String text) {
+		this.text = text;
+	}
+
 	public enum TextAlign {
 		LEFT {
 			@Override

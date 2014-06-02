@@ -3,6 +3,7 @@ package br.com.liviazilberberg.dominomania.client.controller;
 import br.com.liviazilberberg.dominomania.client.controller.base.BaseController;
 import br.com.liviazilberberg.dominomania.client.model.GamePlayModel;
 import br.com.liviazilberberg.dominomania.client.model.MenuModel;
+import br.com.liviazilberberg.dominomania.client.model.Player;
 import br.com.liviazilberberg.dominomania.client.model.ProtocolEnum;
 import br.com.liviazilberberg.dominomania.client.model.MenuModel.MenuStepEnum;
 import br.com.liviazilberberg.dominomania.client.util.GamePadEnum;
@@ -31,12 +32,20 @@ public class MenuController extends BaseController<MenuModel> {
 			}
 
 			if (event.getGamepadAction() == GamePadEnum.A) {
-				GamePlayModel gameplayModel = new GamePlayModel();
-				GamePlayController baseController = new GamePlayController(
-						gameplayModel);
-				ViewManager.getInstance().navigateTo(
-						new GamePlayView(gameplayModel, baseController));
+				getModel().setCurrentStep(MenuStepEnum.SETTING_NAME);
+			}
+		} else if (menuModel.getCurrentStep() == MenuStepEnum.SETTING_NAME) {
+			if (event.getGamepadAction() == GamePadEnum.A) {
+				navigateToGameplayView();
 			}
 		}
+	}
+
+	private void navigateToGameplayView() {
+		GamePlayModel gameplayModel = new GamePlayModel();
+		Player player = new Player();
+		player.setNickname("Livia");
+		GamePlayController baseController = new GamePlayController(gameplayModel, player);
+		ViewManager.getInstance().navigateTo(new GamePlayView(gameplayModel, baseController));
 	}
 }

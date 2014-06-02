@@ -1,38 +1,38 @@
 package br.com.liviazilberberg.dominomania.client.service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import br.com.liviazilberberg.dominomania.client.model.DominoBrick;
+import br.com.liviazilberberg.dominomania.client.model.Player;
 
-public class DominoService {
+public interface DominoService {
 
-	private ArrayList<DominoBrick> dominoBricks;
+	/**
+	 * Compra um peca de domino. Quando o jogador nao possui pecas disponiveis.
+	 * @return - a nova peça do jogador.
+	 */
+	DominoBrick drawDominoBrick();
 
-	public DominoService() {
-		this.dominoBricks = new ArrayList<DominoBrick>();
-
-		for (int leftSide = 0; leftSide < 7; leftSide++) {
-			for (int RigthSide = 0; RigthSide < 7; RigthSide++) {
-				this.dominoBricks.add(new DominoBrick(leftSide, RigthSide));
-			}
-		}
-	}
+	/**
+	 * Lista os dominos na mao do jogado. Tipicamente chamado no inicio da partida.
+	 * @return - A lista de pecas de domino na mao do jogador.
+	 */
+	List<DominoBrick> listDominosOnPlayerHand();
 	
-	public DominoBrick drawDominoBrick(){
-		int sortedBrick = new Random().nextInt(dominoBricks.size());
-		DominoBrick result = dominoBricks.remove(sortedBrick);
-		return result;
-	}
+	/**
+	 * Joga a peca informada para o seguinte jogador
+	 */
+	void playDominoBrick(DominoBrick dominoBrick, Player player);
 	
+	/**
+	 * Lista as pedras na mesa.
+	 * @return - a lista de pedras de domino na mesa.
+	 */
+	List<DominoBrick> listDominosOnTable();
 
-	public List<DominoBrick> listDominosOnPlayerHand() {
-		List<DominoBrick> result = new ArrayList<DominoBrick>();
-		for(int i = 0; i < 7; i++) {
-			result.add(drawDominoBrick());
-		}
-		
-		return result;
-	}
+	/**
+	 * Listener que sera notificara a vez de quem é a atual. Esse evento ocorrerá a partir da mensagem via broadcast do socket
+	 * @param listener - Classe listener, deve ser chamada no evento acima
+	 */
+	void addGameTurnListener(GameTurnListener listener);
 }

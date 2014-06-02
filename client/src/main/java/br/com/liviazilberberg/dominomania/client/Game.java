@@ -27,6 +27,7 @@ public class Game {
 
 			ViewManager.getInstance().getCurrentView().update();
 			ViewManager.getInstance().getCurrentView().draw(console);
+			ViewManager.getInstance().getCurrentView().updateObjects();
 
 			gameWindow.setText(console.toString());
 		}
