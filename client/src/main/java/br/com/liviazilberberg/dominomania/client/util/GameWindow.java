@@ -64,7 +64,7 @@ public class GameWindow {
 		textArea = new TextArea();
 		textArea.setBackground(Color.BLACK);
 		textArea.setForeground(Color.GREEN);
-		textArea.setFont(new Font("Courier", Font.PLAIN, 14));
+		textArea.setFont(new Font("Monospaced", Font.PLAIN, 14));
 		textArea.setFocusable(false);
 
 		frame.add(textArea);
