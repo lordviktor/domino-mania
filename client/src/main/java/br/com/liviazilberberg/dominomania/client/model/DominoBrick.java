@@ -40,4 +40,9 @@ public class DominoBrick {
 	public enum Side{
 		LEFT, RIGTH
 	}
+
+	@Override
+	public String toString() {
+		return "DominoBrick [leftSideNumber=" + leftSideNumber + ", rigthSideNumber=" + rigthSideNumber + "]";
+	}
 }

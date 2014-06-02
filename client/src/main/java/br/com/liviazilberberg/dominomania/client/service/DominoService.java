@@ -11,7 +11,7 @@ public interface DominoService {
 	 * Compra um peca de domino. Quando o jogador nao possui pecas disponiveis.
 	 * @return - a nova peça do jogador.
 	 */
-	DominoBrick drawDominoBrick();
+	DominoBrick drawsDominoBrick();
 
 	/**
 	 * Lista os dominos na mao do jogado. Tipicamente chamado no inicio da partida.
@@ -35,4 +35,15 @@ public interface DominoService {
 	 * @param listener - Classe listener, deve ser chamada no evento acima
 	 */
 	void addGameTurnListener(GameTurnListener listener);
+
+	/**
+	 * Metodo no notifica o servidor se que estou pronto para comecar 
+	 */
+	void ready();
+	
+	/**
+	 * Metodo que lista todos os jogadores de determinada partida
+	 * @return
+	 */
+	List<Player> listPlayers();
 }

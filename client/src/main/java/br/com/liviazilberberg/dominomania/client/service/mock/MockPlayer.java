@@ -2,12 +2,13 @@ package br.com.liviazilberberg.dominomania.client.service.mock;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Callable;
 
 import br.com.liviazilberberg.dominomania.client.model.DominoBrick;
 import br.com.liviazilberberg.dominomania.client.model.DominoBrick.Side;
 import br.com.liviazilberberg.dominomania.client.model.Player;
 
-public class MockPlayer extends Player implements Runnable {
+public class MockPlayer extends Player implements Callable<Void> {
 
 	private DominoServiceMock dominoServiceMock;
 
@@ -20,33 +21,34 @@ public class MockPlayer extends Player implements Runnable {
 	}
 
 	@Override
-	public void run() {
+	public Void call() {
 		try {
 			if (firstTime) {
-				dominoServiceMock.listDominosOnPlayerHand();
+				dominoBricksOnHand = dominoServiceMock.listDominosOnPlayerHand();
 			} else {
-				dominoServiceMock.drawDominoBrick();
+				dominoBricksOnHand.add(dominoServiceMock.drawsDominoBrick());
 			}
 			Thread.sleep(1000);
 
 			DominoBrick dominoToPlay = findElegibleDominoOnHandBrick();
-			boolean finded = false;
+			boolean finded = dominoToPlay != null;
 			while (!finded) {
-				DominoBrick drawDominoBrick = dominoServiceMock.drawDominoBrick();
+				DominoBrick drawDominoBrick = dominoServiceMock.drawsDominoBrick();
 				if (drawDominoBrick == null) {
 					finded = true;
 				} else {
-					if (checkElegibleDominoBrick(drawDominoBrick) != null) {
+					dominoBricksOnHand.add(drawDominoBrick);
+					if (findElegibleDominoOnHandBrick() != null) {
 						dominoToPlay = drawDominoBrick;
+						finded = true;
 					}
 				}
 			}
-
 			dominoServiceMock.playDominoBrick(dominoToPlay, this);
-
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+		return null;
 	}
 
 	public Boolean checkElegibleDominoBrick(DominoBrick dominoBrick) {

@@ -7,6 +7,7 @@ import java.util.Observable;
 import br.com.liviazilberberg.dominomania.client.controller.GamePlayController;
 import br.com.liviazilberberg.dominomania.client.model.DominoBrick;
 import br.com.liviazilberberg.dominomania.client.model.GamePlayModel;
+import br.com.liviazilberberg.dominomania.client.objects.Border;
 import br.com.liviazilberberg.dominomania.client.objects.Domino;
 import br.com.liviazilberberg.dominomania.client.util.Point;
 import br.com.liviazilberberg.dominomania.client.view.base.BaseView;
@@ -14,6 +15,7 @@ import br.com.liviazilberberg.dominomania.client.view.base.BaseView;
 public class GamePlayView extends BaseView<GamePlayModel, GamePlayController> {
 	private List<Domino> dominoOnHand;
 	private List<Domino> dominoOnScreen;
+	private Border border;
 
 	public GamePlayView(GamePlayModel baseModel, GamePlayController baseController) {
 		super(baseModel, baseController);
@@ -22,7 +24,9 @@ public class GamePlayView extends BaseView<GamePlayModel, GamePlayController> {
 
 	@Override
 	public void update(Observable o, Object arg) {
-
+	
+		
+		
 	}
 
 	@Override
@@ -38,5 +42,8 @@ public class GamePlayView extends BaseView<GamePlayModel, GamePlayController> {
 			super.addObjectToView(domino);
 			order++;
 		}
+		
+		border = new Border(new Point(0, 0), new Point(150, 40));
+		super.addObjectToView(border);
 	}
 }
