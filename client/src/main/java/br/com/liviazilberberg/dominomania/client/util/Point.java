@@ -28,6 +28,11 @@ public class Point {
         this.y = y;
     }
 
+	@Override
+	public String toString() {
+		return "Point [x=" + x + ", y=" + y + "]";
+	}
+
 	public static Point getOrigin() {
 		return new Point(0, 0);
 	}

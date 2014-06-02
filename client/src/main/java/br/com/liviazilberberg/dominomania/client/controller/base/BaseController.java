@@ -1,6 +1,7 @@
 package br.com.liviazilberberg.dominomania.client.controller.base;
 
 import br.com.liviazilberberg.dominomania.client.model.base.BaseModel;
+import br.com.liviazilberberg.dominomania.client.util.InputManager;
 import br.com.liviazilberberg.dominomania.client.util.InputManager.GamePadActionListener;
 import br.com.liviazilberberg.dominomania.client.util.InputManager.GamepadActionEvent;
 
@@ -10,6 +11,7 @@ public class BaseController<Model extends BaseModel> implements
 
 	public BaseController(Model model) {
 		this.model = model;
+		InputManager.getInstance().addActionListener(this);
 	}
 
 	@Override

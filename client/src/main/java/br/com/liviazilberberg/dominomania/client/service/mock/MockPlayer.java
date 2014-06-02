@@ -32,7 +32,7 @@ public class MockPlayer extends Player implements Callable<Void> {
 
 			DominoBrick dominoToPlay = findElegibleDominoOnHandBrick();
 			boolean finded = dominoToPlay != null;
-			while (!finded) {
+			while (!finded) { // regra ara comprar no caso de nenhuma peca na mao ser elegivel
 				DominoBrick drawDominoBrick = dominoServiceMock.drawsDominoBrick();
 				if (drawDominoBrick == null) {
 					finded = true;

@@ -9,13 +9,21 @@ public class GamePlayModel extends BaseModel {
 
 	private List<DominoBrick> dominoBrickOnTable = new ArrayList<DominoBrick>();
 	private List<DominoBrick> dominoBrickOnHand = new ArrayList<DominoBrick>();
-	
-	private List<Player> enemies = new ArrayList<Player>();
+
+	private DominoBrick brickSelected;
 	
 	private boolean isMyTurn = false;
 	
 	private Player playerTurn = null;
 	
+	public DominoBrick getBrickSelected() {
+		return brickSelected;
+	}
+
+	public void setBrickSelected(DominoBrick brickSelected) {
+		this.brickSelected = brickSelected;
+	}
+
 	public boolean isMyTurn() {
 		return isMyTurn;
 	}
@@ -32,14 +40,6 @@ public class GamePlayModel extends BaseModel {
 	public void setPlayerTurn(Player playerTurn) {
 		this.playerTurn = playerTurn;
 		notifyAllObservers();
-	}
-
-	public List<Player> getEnemies() {
-		return enemies;
-	}
-
-	public void setEnemies(List<Player> enemies) {
-		this.enemies = enemies;
 	}
 
 	public List<DominoBrick> getDominoBrickOnTable() {

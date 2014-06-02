@@ -79,17 +79,20 @@ public class DominoServiceMock implements DominoService {
 
 	@Override
 	public void playDominoBrick(DominoBrick dominoBrick, Player player) {
+		Side side = null;
 		if (dominoBrick != null) { // caso o jogador nao tem pecas para jogar
 			if (dominoOnTable.size() == 0) {
 				dominoOnTable.add(dominoBrick);
 			} else if (dominoOnTable.get(0).verifyCompatibility(dominoBrick, Side.LEFT)) {
 				dominoOnTable.add(0, dominoBrick);
+				side = Side.LEFT;
 			} else if (dominoOnTable.get(dominoOnTable.size() - 1).verifyCompatibility(dominoBrick, Side.RIGTH)) {
 				dominoOnTable.add(dominoBrick);
+				side = Side.RIGTH;
 			}
 		}
 
-		notifyGameMove(new GameTurnMoveEvent(player, dominoBrick));
+		notifyGameMove(new GameTurnMoveEvent(player, dominoBrick, side));
 		notifyGameTurn(new GameTurnEvent(calculateNextPlayer(player)));
 	}
 
